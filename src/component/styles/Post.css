@@ -1,8 +1,34 @@
 .post {
-   
+   border: 1px solid lightgray;
+   max-width: 472px;
+   margin: auto;
+   margin-bottom: 40px;
+   background-color: white;
 }
 
+.post__header {
+    display: flex;
+    align-items: center; 
+    padding: 10px;
+}
 
+.post__header h3 {
+    margin-left: 10px;
+}
+
+.post__img {
+    width: 100%;
+    /* min-height: 400px; */
+    /* object-fit:cover; */
+    object-fit: contain;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.post__caption {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
 
 span {
     font-weight: normal;
