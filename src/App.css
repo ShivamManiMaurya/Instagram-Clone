@@ -17,3 +17,13 @@
   object-fit: contain;
   margin-left: 20px;
 }
+
+.modal-img {
+  max-width: 6rem;
+  margin: auto;
+}
+
+.modal__signup {
+  display: flex;
+  flex-direction: column;
+}
