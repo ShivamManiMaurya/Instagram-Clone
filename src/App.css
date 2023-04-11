@@ -1,3 +1,19 @@
 *{
   margin: 0;
 }
+
+.App {
+  background-color: #fafafa;
+  /* height: 100vh; */
+}
+
+.app__header {
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+}
+
+.app__headerImg {
+  max-width: 7.5rem;
+  object-fit: contain;
+  margin-left: 20px;
+}
