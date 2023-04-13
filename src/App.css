@@ -10,12 +10,19 @@
 .app__header {
   background-color: white;
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
 }
 
 .app__headerImg {
   max-width: 7.5rem;
   object-fit: contain;
   margin-left: 20px;
+}
+
+.app__headerLogin {
+  /* margin-right: 20px; */
+  padding: 15px;
 }
 
 .modal-img {

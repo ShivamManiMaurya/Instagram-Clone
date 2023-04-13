@@ -5,6 +5,7 @@ import './App.css';
 import Post from './component/Post';
 import React, {useState, useEffect} from 'react';
 import {db, auth} from './firebase';
+import ImageUpload from './component/ImageUpload';
 
 // materialUI
 import Box from '@mui/material/Box';
@@ -32,9 +33,7 @@ function App() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(authuser => {
-        return (
-          authuser.user.updateProfile({displayName: username})
-        );
+        return authuser.user.updateProfile({displayName: username});
       })
       .catch(error => alert(error.message));
 
@@ -71,6 +70,7 @@ function App() {
   }, [user])
 
   useEffect (() => {
+    // db.collection("posts").orderBy('timestamp', 'desc').onSnapshot(snapshot => {
     db.collection("posts").onSnapshot(snapshot => {
       // every time new post added, this code fires...
       setPosts(snapshot.docs.map(doc => { 
@@ -106,19 +106,22 @@ function App() {
           src="https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram.png" 
           alt="Instagram-logo" 
         />
+        <div className="app__headerLogin">
+          {user ? 
+            (<Button onClick={() => auth.signOut()}>LogOut</Button>) 
+            : 
+            (
+              <div className="app__loginContainer">
+                <Button onClick={() => setOpenSignIn(true)}>SignIn</Button>
+                <Button onClick={handleOpen}>SignUp</Button>
+              </div>
+            )
+          }
+        </div>
       </div>
 
       <div>
-      {user ? 
-        (<Button onClick={() => auth.signOut()}>LogOut</Button>) 
-        : 
-        (
-          <div className="app__loginContainer">
-            <Button onClick={() => setOpenSignIn(true)}>SignIn</Button>
-            <Button onClick={handleOpen}>SignUp</Button>
-          </div>
-        )
-      }
+      
       <Modal
         open={open}
         onClose={handleClose}
@@ -201,6 +204,11 @@ function App() {
         return (<Post key={id} username={post.username} imgUrl={post.imgUrl} caption={post.caption}/>);
       })}
       {/* post */}
+
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ) : (<h4>Log in to upload Post</h4>)}
 
     </div>
   );
